@@ -9,8 +9,17 @@ function generateMultiplicationTable() {
     const startVertical = parseInt(document.getElementById("startVertical").value);
     const endVertical = parseInt(document.getElementById("endVertical").value);
 
+    const errorMessages = document.getElementById("errorMessages");
+    errorMessages.textContent = ""; // Clear previous error messages
+
     if (isNaN(startHorizontal) || isNaN(endHorizontal) || isNaN(startVertical) || isNaN(endVertical)) {
-        alert("Please enter valid numbers for all fields.");
+        errorMessages.textContent = "Please enter valid numbers for all fields.";
+        return;
+    }
+
+    if (startHorizontal < -50 || startHorizontal > 50 || endHorizontal < -50 || endHorizontal > 50 ||
+        startVertical < -50 || startVertical > 50 || endVertical < -50 || endVertical > 50) {
+        errorMessages.textContent = "Please enter numbers between -50 and 50 for all fields.";
         return;
     }
 
